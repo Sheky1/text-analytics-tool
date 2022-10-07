@@ -1,0 +1,46 @@
+<div class="entity-main">
+  <h1>
+    <b>Text Similarity</b> - estimate the degree of similarity between two
+    texts.
+  </h1>
+
+  <p class="mt-4">Enter two short sentences to compute their similarity.</p>
+
+  <form [formGroup]="similarityForm" (submit)="textSimilarity()" class="my-3">
+    <div class="form-group group-center">
+      <textarea
+        type="text"
+        class="form-control"
+        id="text1"
+        placeholder="Text number 1"
+        [formControlName]="'text1'"
+      >
+      </textarea>
+    </div>
+
+    <div class="form-group group-center">
+      <textarea
+        type="text"
+        class="form-control"
+        id="text2"
+        placeholder="Text number 2"
+        [formControlName]="'text2'"
+      >
+      </textarea>
+    </div>
+
+    <button
+      [disabled]="!similarityForm.valid"
+      type="submit"
+      class="btn btn-primary mt-3"
+    >
+      Submit
+    </button>
+  </form>
+  <div *ngIf="this.dataAvailable">
+    <h2>
+      Semantic similarity:
+      <span style="font-size: 30px">{{ this.data.similarity }}</span>
+    </h2>
+  </div>
+</div>

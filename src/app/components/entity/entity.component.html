@@ -1,0 +1,112 @@
+<div class="entity-main">
+  <h1>
+    <b>Entity Extraction</b> - find places, people, brands, and events in
+    documents and social media.
+  </h1>
+
+  <p class="mt-4">
+    Enter a sentence to extract named entities: it works well also on short
+    texts.
+  </p>
+
+  <form [formGroup]="entityForm" (submit)="detectEntities()" class="my-3">
+    <div class="form-group group-center">
+      <textarea
+        type="text"
+        class="form-control"
+        id="entityText"
+        placeholder="Text for detection"
+        [formControlName]="'entityText'"
+      >
+      </textarea>
+    </div>
+
+    <div class="form-group input-style group-center">
+      <label for="confidence" class="form-label"
+        >Minimum confidence coefficient (0-1):</label
+      >
+      <input
+        type="range"
+        class="form-range"
+        id="confidence"
+        min="0"
+        max="1"
+        step="0.01"
+        [formControlName]="'confidence'"
+      />
+    </div>
+
+    <div class="form-group group-center input-style flex-column">
+      <p>Choose the "include" parameters (optional):</p>
+      <div class="flex-row">
+        <div class="form-check form-switch flex-column">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="includeImage"
+            [formControlName]="'includeImage'"
+          />
+          <label class="form-check-label" for="includeImage">Image</label>
+        </div>
+        <div class="form-check form-switch flex-column">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="includeAbstract"
+            [formControlName]="'includeAbstract'"
+          />
+          <label class="form-check-label" for="includeAbstract">Abstract</label>
+        </div>
+        <div class="form-check form-switch flex-column">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="includeCategories"
+            [formControlName]="'includeCategories'"
+          />
+          <label class="form-check-label" for="includeCategories"
+            >Categories</label
+          >
+        </div>
+      </div>
+    </div>
+
+    <button
+      [disabled]="!entityForm.valid"
+      type="submit"
+      class="btn btn-primary mt-3"
+    >
+      Submit
+    </button>
+  </form>
+  <div *ngIf="this.dataAvailable" class="annotations">
+    <div
+      *ngFor="let annotation of this.data.annotations; let index = index"
+      class="annotation-main"
+    >
+      <h2>Annotation number - {{ index }}</h2>
+      <div class="annotation-info">
+        <p>Title: {{ annotation.title }}</p>
+        <p>
+          Wikipedia page for
+          <a [href]="annotation.uri">{{ annotation.title }}</a>
+        </p>
+        <img
+          *ngIf="this.includeImage"
+          [src]="annotation.image.thumbnail"
+          alt="Annotation image not working"
+          class="annotation-image"
+        />
+        <p *ngIf="this.includeCategories" class="annotation-categories">
+          Categories -
+          <span *ngFor="let category of annotation.categories; let i = index"
+            >{{ i }}. {{ category }},
+          </span>
+        </p>
+        <p *ngIf="this.includeAbstract" class="annotation-abstract">
+          {{ annotation.abstract }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

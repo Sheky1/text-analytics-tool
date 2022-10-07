@@ -1,0 +1,27 @@
+<div class="home-main">
+  <div *ngIf="tokenAvailable(); else elseBlock">
+    You currently have a token in usage. You can update your token in the input
+    below.
+  </div>
+  <ng-template #elseBlock>There is no token detected.</ng-template>
+
+  <form [formGroup]="tokenForm" (submit)="placeToken()" class="my-3">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="token"
+        placeholder="Token"
+        [formControlName]="'token'"
+      />
+    </div>
+
+    <button
+      [disabled]="!tokenForm.valid"
+      type="submit"
+      class="btn btn-primary mt-3"
+    >
+      Submit
+    </button>
+  </form>
+</div>

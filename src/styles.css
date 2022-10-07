@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+h1 {
+  font-weight: 100;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.entity-main {
+  text-align: center;
+}
+
+.group-center {
+  width: 80%;
+  margin: auto;
+  margin-top: 7px;
+}
+
+.input-style {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.annotations {
+  text-align: left;
+}
+
+.annotation-image {
+  width: 200px;
+}
