@@ -1,4 +1,6 @@
-# Domaci1
+# Text Analytics Tool
+
+The project was made to give text different semantic analysis (text similarity, language detection, positive/negative connotation..)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
